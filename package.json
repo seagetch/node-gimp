@@ -1,0 +1,29 @@
+{
+  "name": "node-gimp",
+  "version": "1.0.0",
+  "description": "node-red nodes for gimp-painter.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gimp"
+  ],
+  "author": "seagetch",
+  "license": "GPL-3.0",
+  "node-red": {
+    "nodes": {
+      "gimp-pdb": "gimp-pdb.js"
+    }
+  },
+  "dependencies": {
+    "ajv": "^5.2.2",
+    "build-bundle": "^2.0.8",
+    "request": "^2.81.0",
+    "swagger-client": "^3.0.20",
+    "swagger-js-client": "^1.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.5.5"
+  }
+}
