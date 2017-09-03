@@ -146,13 +146,14 @@ function createOAS2DefaultConfig(name, template, spec, default_config) {
             prop_node.appendChild(prop_input);
             if (ARG_DEFAULT_NULL.includes(arg_name))
                 default_config["arg-"+arg_name] = {value: null}
-            else if(prop_spec.type == "integer")
-                default_config["arg-"+arg_name] = {value:0}
-            else if(prop_spec.type == "number")
-                default_config["arg-"+arg_name] = {value:0.0}
-            else if(prop_spec.type == "boolean")
+            else if(prop_spec.type == "integer") {
+                default_config["arg-"+arg_name] = {value:0, validate:RED.validators.number() }
+            } else if(prop_spec.type == "number") {
+                default_config["arg-"+arg_name] = {value:0.0, validate:RED.validators.number()}
+            } else if(prop_spec.type == "boolean") {
                 default_config["arg-"+arg_name] = {value:false}
-            else
+                prop_input.setAttribute('type','checkbox');
+           } else
                 default_config["arg-"+arg_name] = {value:""}
         }
     }
@@ -197,12 +198,12 @@ function registration() {
                         .when(/file_(.*)_load/, function(matched) {
                             var format = matched[1]
                             var default_config = {}
-                            createREDtemplate(it, path_def.description ||"no description", method_def, default_config, createOAS2DefaultConfig);
+                            createREDtemplate(it, method_def.description ||"no description", method_def, default_config, createOAS2DefaultConfig);
                             RED.nodes.registerType(it,{
                                 category: 'input',
-                                color: '#a6bbcf',
+                                color: '#F3B567',
                                 defaults: default_config,
-                                inputs:0,
+                                inputs:1,
                                 outputs:2,
                                 icon: "file.png",
                                 label: function() {
@@ -215,13 +216,13 @@ function registration() {
                         .when(/file_(.*)_save/, function(matched) {
                             var format = matched[1]
                             var default_config = {}
-                            createREDtemplate(it, path_def.description ||"no description", method_def, default_config, createOAS2DefaultConfig);
+                            createREDtemplate(it, method_def.description ||"no description", method_def, default_config, createOAS2DefaultConfig);
                             RED.nodes.registerType(it,{
                                 category: 'output',
-                                color: '#a6bbcf',
+                                color: '#F3B567',
                                 defaults: default_config,
                                 inputs:1,
-                                outputs:0,
+                                outputs:2,
                                 icon: "file.png",
                                 label: function() {
                                     return this.name ||(format+" out");
@@ -233,10 +234,10 @@ function registration() {
                         })
                         .otherwise(function() {
                             var default_config = {}
-                            createREDtemplate(it, path_def.description ||"no description", method_def, default_config, createOAS2DefaultConfig);
+                            createREDtemplate(it, method_def.description ||"no description", method_def, default_config, createOAS2DefaultConfig);
                             RED.nodes.registerType(it,{
                                 category: 'Filter',
-                                color: '#a6bbcf',
+                                color: '#F3B567',
                                 defaults: default_config,
                                 inputs:1,
                                 outputs:2,
