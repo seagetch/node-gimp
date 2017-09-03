@@ -1,5 +1,5 @@
 {
-  "name": "node-gimp",
+  "name": "node-gimp-painter",
   "version": "1.0.0",
   "description": "node-red nodes for gimp-painter.",
   "main": "index.js",
@@ -25,5 +25,13 @@
   },
   "devDependencies": {
     "webpack": "^3.5.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seagetch/node-gimp-painter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seagetch/node-gimp-painter/issues"
+  },
+  "homepage": "https://github.com/seagetch/node-gimp-painter#readme"
 }
