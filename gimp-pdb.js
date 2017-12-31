@@ -3,7 +3,7 @@ module.exports = function(RED) {
 
     var ARG_DEFAULT_NULL = ["image", "layer", "drawable", "item", "display"]
     var METHODS = ["get","put","post","delete","patch"]
-    registration = async function () {
+    registration = function () {
         promise = RED.Swagger('http://localhost:8920/api/v1/pdb/')
         .then( client => {
             Object.keys(client.spec.paths).forEach(function(path) {
@@ -66,7 +66,6 @@ module.exports = function(RED) {
         // TryItOut Executor, with the `spec` already provided
         //client.execute({operationId: 'addPet', parameters: {id: 1, name: "bobby") }).then(...)
         });
-        await promise
     }()
 
 }
